@@ -21,8 +21,8 @@ declare module "@emotion/react" {
         fontFamily: string;
         fontStyle: string;
         fontWeight: number;
-        fontSize: number;
-        lineHeight: number;
+        fontSize: string;
+        lineHeight: string;
       };
     };
   }

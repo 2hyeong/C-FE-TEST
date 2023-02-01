@@ -1,8 +1,19 @@
+import { SyntheticEvent, useRef } from "react";
+//
 import { css } from "@emotion/react";
-import Button from "@/components/ui/button";
 import styled from "@emotion/styled";
+import { searchInputState } from "@/store/book";
+import { useSetRecoilState } from "recoil";
 
 export default function SearchBookInput() {
+  const input = useRef<HTMLInputElement>(null);
+  const setInput = useSetRecoilState(searchInputState);
+
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    setInput(input.current?.value || "");
+  };
+
   const 상세검색버튼 = styled.button((props) => ({
     ...props.theme.typography.body2,
     border: "1px solid #8D94A0",
@@ -15,7 +26,8 @@ export default function SearchBookInput() {
   }));
 
   return (
-    <div
+    <form
+      onSubmit={handleSubmit}
       css={css`
         display: flex;
       `}
@@ -34,6 +46,7 @@ export default function SearchBookInput() {
           ...theme.typography.caption,
         })}
         placeholder="검색어를 입력하세요"
+        ref={input}
       />
       <div
         css={css`
@@ -42,8 +55,8 @@ export default function SearchBookInput() {
           margin-left: 1rem;
         `}
       >
-        <상세검색버튼>상세 검색</상세검색버튼>
+        <상세검색버튼 type="submit">상세 검색</상세검색버튼>
       </div>
-    </div>
+    </form>
   );
 }

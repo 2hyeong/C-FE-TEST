@@ -1,6 +1,13 @@
+import { useGetBooks } from "@/hooks/quries/useBook";
+import { searchInputState } from "@/store/book";
 import { css } from "@emotion/react";
+import { useRecoilValue } from "recoil";
+import Empty from "./empty";
 
 export default function SearchBookList() {
+  const query = useRecoilValue(searchInputState);
+  const { data } = useGetBooks({ query });
+
   return (
     <div>
       <div>
@@ -19,12 +26,18 @@ export default function SearchBookList() {
               marginLeft: "1rem",
             })}
           >
-            0
+            {data?.data?.documents?.length || 0}
           </span>
           건
         </span>
       </div>
-      <div></div>
+      <div
+        css={css`
+          margin-top: 10rem;
+        `}
+      >
+        {!data?.data?.documents?.length ? <Empty /> : <></>}
+      </div>
     </div>
   );
 }
