@@ -17,7 +17,13 @@ declare module "@emotion/react" {
       [key in palette]: string;
     };
     typography: {
-      [key in typography]: unknown;
+      [key in typography]: {
+        fontFamily: string;
+        fontStyle: string;
+        fontWeight: number;
+        fontSize: number;
+        lineHeight: number;
+      };
     };
   }
 }
