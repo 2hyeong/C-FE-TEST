@@ -16,11 +16,11 @@ export default function Empty() {
         height={80}
         alt="책 아이콘"
       />
-      <caption
+      <span
         css={(theme) => ({ ...theme.typography.caption, marginTop: "2rem" })}
       >
         검색 결과가 없습니다
-      </caption>
+      </span>
     </div>
   );
 }

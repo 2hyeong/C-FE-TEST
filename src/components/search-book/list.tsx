@@ -1,12 +1,14 @@
 import { useGetBooks } from "@/hooks/quries/useBook";
 import { searchInputState } from "@/store/book";
+import { IBook } from "@/types/book";
 import { css } from "@emotion/react";
 import { useRecoilValue } from "recoil";
 import Empty from "./empty";
+import SearchBookItem from "./item";
 
 export default function SearchBookList() {
   const query = useRecoilValue(searchInputState);
-  const { data } = useGetBooks({ query });
+  const { data, isLoading } = useGetBooks({ query });
 
   return (
     <div>
@@ -33,10 +35,29 @@ export default function SearchBookList() {
       </div>
       <div
         css={css`
-          margin-top: 10rem;
+          display: "flex";
+          flex-direction: "column";
         `}
       >
-        {!data?.data?.documents?.length ? <Empty /> : <></>}
+        {!data?.data?.documents?.length ? (
+          <div
+            css={css`
+              margin-top: 10rem;
+            `}
+          >
+            <Empty />
+          </div>
+        ) : (
+          <div
+            css={css`
+              margin-top: 4rem;
+            `}
+          >
+            {data?.data?.documents?.map((doc: IBook, key: number) => (
+              <SearchBookItem key={key} doc={doc} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
