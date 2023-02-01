@@ -1,6 +1,7 @@
 import "@emotion/react";
 
-type palette = "primary" | "red" | "gray" | "lightGray" | "white" | "black";
+type text = "primary" | "secondary";
+type palette = "primary" | "red" | "gray" | "white" | "black" | "secondary";
 type typography =
   | "title1"
   | "title2"
@@ -15,6 +16,11 @@ declare module "@emotion/react" {
   export interface Theme {
     palette: {
       [key in palette]: string;
+    };
+    text: {
+      [key in text]: {
+        color: string;
+      };
     };
     typography: {
       [key in typography]: {

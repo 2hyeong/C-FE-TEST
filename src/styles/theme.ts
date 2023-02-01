@@ -2,9 +2,14 @@ const palette = {
   primary: "#4880EE",
   red: "#E84118",
   gray: "#DADADA",
-  lightGray: "#F2F4F6",
   white: "#FFFFFF",
   black: "#222222",
+  secondary: "#F2F4F6",
+};
+
+const text = {
+  primary: { color: "#353C49" },
+  secondary: { color: "#6D7582" },
 };
 
 const typography = {
@@ -68,5 +73,6 @@ const typography = {
 
 export const theme = {
   palette,
+  text,
   typography,
 };
