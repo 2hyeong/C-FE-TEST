@@ -1,6 +1,11 @@
-import Layout from "@/components/layout";
+//
 import Head from "next/head";
-import SearchBook from "@/components/search-book";
+// emotion
+import styled from "@emotion/styled";
+// components
+import Layout from "@/components/layout";
+import SearchBookInput from "@/components/search-book/input";
+import SearchBookList from "@/components/search-book/list";
 
 export default function Home() {
   return (
@@ -12,8 +17,36 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <SearchBook />
+        <Container>
+          <검색Container>
+            <Title2>도서 검색</Title2>
+            <SearchBookInput />
+          </검색Container>
+          <SearchBookList />
+        </Container>
       </Layout>
     </>
   );
 }
+
+const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  max-width: 960px;
+  & > * {
+    margin: 16px 0;
+  }
+`;
+
+const 검색Container = styled.div`
+  width: 100%;
+  & > * {
+    margin: 16px 0;
+  }
+`;
+
+const Title2 = styled.h2(({ theme }) => ({
+  ...theme.typography.title2,
+}));
