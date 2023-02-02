@@ -2,16 +2,18 @@ import { SyntheticEvent, useRef } from "react";
 //
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { searchInputState } from "@/store/book";
+import { bookDetailKeyState, searchInputState } from "@/store/book";
 import { useSetRecoilState } from "recoil";
 
 export default function SearchBookInput() {
   const input = useRef<HTMLInputElement>(null);
   const setInput = useSetRecoilState(searchInputState);
+  const setBookDetail = useSetRecoilState(bookDetailKeyState);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     setInput(input.current?.value || "");
+    setBookDetail("");
   };
 
   const 상세검색버튼 = styled.button((props) => ({
@@ -37,7 +39,7 @@ export default function SearchBookInput() {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          padding: "10px 0px 10px 10px",
+          padding: "10px 0px",
           background: "#f2f4f6",
           borderRadius: "100px",
           border: "none",
