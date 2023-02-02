@@ -1,10 +1,11 @@
 //
 import Image from "next/image";
-import Link from "next/link";
 import { ReactNode } from "react";
 // emotion
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+// components
+import Nav from "./nav";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
@@ -30,8 +31,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             flex: 1;
           `}
         >
-          <StyledLink href="/">도서 검색</StyledLink>
-          <StyledLink href="/wish-list">내가 찜한 책</StyledLink>
+          <Nav />
         </div>
       </Header>
       <Main>{children}</Main>
@@ -55,8 +55,3 @@ const Column = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-const StyledLink = styled(Link)((props) => ({
-  ...props.theme.typography.body1,
-  margin: "0 2rem",
-}));
