@@ -30,12 +30,15 @@ export default function SearchBookInput() {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          padding: "10px 0px",
           background: "#f2f4f6",
           borderRadius: "100px",
           border: "none",
           width: "480px",
           height: "50px",
+          backgroundImage: 'url("/assets/icons/icon_search.svg")',
+          backgroundPosition: "25px",
+          backgroundRepeat: "no-repeat",
+          padding: "0 60px",
           ...theme.typography.caption,
         })}
         placeholder="검색어를 입력하세요"
