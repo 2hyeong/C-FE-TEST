@@ -1,5 +1,7 @@
-import { css } from "@emotion/react";
+//
 import Image from "next/image";
+// emotion
+import { css } from "@emotion/react";
 
 export default function Empty() {
   return (

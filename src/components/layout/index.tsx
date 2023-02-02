@@ -1,14 +1,12 @@
-import { css } from "@emotion/react";
-import { ReactNode } from "react";
+//
 import Image from "next/image";
 import Link from "next/link";
+import { ReactNode } from "react";
+// emotion
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export default function Layout({ children }: { children: ReactNode }) {
-  const StyledLink = styled(Link)((props) => ({
-    ...props.theme.typography.body1,
-    margin: "0 2rem",
-  }));
   return (
     <div
       css={css`
@@ -59,3 +57,8 @@ export default function Layout({ children }: { children: ReactNode }) {
     </div>
   );
 }
+
+const StyledLink = styled(Link)((props) => ({
+  ...props.theme.typography.body1,
+  margin: "0 2rem",
+}));

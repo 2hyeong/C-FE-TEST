@@ -1,17 +1,25 @@
-import { useGetBooks } from "@/hooks/quries/useBook";
-import { bookDetailKeyState, searchInputState } from "@/store/book";
-import { IBook } from "@/types/book";
-import { css } from "@emotion/react";
+//
 import { useRecoilValue } from "recoil";
+// hooks
+import { useGetBooks } from "@/hooks/quries/useBook";
+// store
+import { bookDetailKeyState, pageState, searchInputState } from "@/store/book";
+// type
+import type { IBook } from "@/types/book";
+// emotion
+import { css } from "@emotion/react";
+// components
 import SearchBookDetail from "./detail";
 import Empty from "./empty";
 import SearchBookItem from "./item";
+import Pagination from "./pagination";
 
 export default function SearchBookList() {
   const query = useRecoilValue(searchInputState);
   const bookDetailKey = useRecoilValue(bookDetailKeyState);
+  const page = useRecoilValue(pageState);
 
-  const { data, isLoading } = useGetBooks({ query });
+  const { data, isLoading } = useGetBooks({ query, page });
   console.log(data);
   return (
     <div>
@@ -72,6 +80,14 @@ export default function SearchBookList() {
             })}
           </div>
         )}
+      </div>
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+        `}
+      >
+        <Pagination total={data?.data?.meta?.total_count} />
       </div>
     </div>
   );

@@ -1,9 +1,11 @@
-import { SyntheticEvent, useRef } from "react";
 //
+import { SyntheticEvent, useRef } from "react";
+import { useSetRecoilState } from "recoil";
+// emotion
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+// store
 import { bookDetailKeyState, searchInputState } from "@/store/book";
-import { useSetRecoilState } from "recoil";
 
 export default function SearchBookInput() {
   const input = useRef<HTMLInputElement>(null);
@@ -15,17 +17,6 @@ export default function SearchBookInput() {
     setInput(input.current?.value || "");
     setBookDetail("");
   };
-
-  const 상세검색버튼 = styled.button((props) => ({
-    ...props.theme.typography.body2,
-    border: "1px solid #8D94A0",
-    borderRadius: "8px",
-    color: "#8d94a0",
-    padding: "5px 10px",
-    cursor: "pointer",
-    backgroundColor: props.theme.palette.white,
-    height: "35.7px",
-  }));
 
   return (
     <form
@@ -62,3 +53,14 @@ export default function SearchBookInput() {
     </form>
   );
 }
+
+const 상세검색버튼 = styled.button((props) => ({
+  ...props.theme.typography.body2,
+  border: "1px solid #8D94A0",
+  borderRadius: "8px",
+  color: "#8d94a0",
+  padding: "5px 10px",
+  cursor: "pointer",
+  backgroundColor: props.theme.palette.white,
+  height: "35.7px",
+}));

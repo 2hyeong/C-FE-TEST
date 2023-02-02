@@ -1,12 +1,11 @@
+// emotion
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+// components
 import SearchBookInput from "./input";
 import SearchBookList from "./list";
 
 export default function SearchBook() {
-  const Title2 = styled.h2((props) => ({
-    ...props.theme.typography.title2,
-  }));
   return (
     <section
       css={css`
@@ -35,3 +34,7 @@ export default function SearchBook() {
     </section>
   );
 }
+
+const Title2 = styled.h2((props) => ({
+  ...props.theme.typography.title2,
+}));

@@ -19,41 +19,6 @@ interface ISearchBookDetail {
 export default function SearchBookDetail({ doc }: ISearchBookDetail) {
   const setBookDetail = useSetRecoilState(bookDetailKeyState);
 
-  const Title = styled.span(({ theme }) => ({
-    ...theme.typography.title3,
-    ...theme.text.primary,
-  }));
-
-  const Author = styled.span(({ theme }) => ({
-    ...theme.typography.body2,
-    ...theme.text.secondary,
-    marginLeft: "1rem",
-  }));
-
-  const Contents = styled.p(({ theme }) => ({
-    ...theme.text.primary,
-    fontFamily: "Noto Sans KR",
-    fontWeight: 500,
-    fontSize: "10px",
-    lineHeight: "16px",
-    wordBreak: "keep-all",
-    display: "contents",
-  }));
-
-  const Price = styled.div(({ theme }) => ({
-    ...theme.typography.title3,
-    ...theme.text.primary,
-    marginLeft: "8px",
-  }));
-
-  const PriceCaption = styled.span(() => ({
-    fontFamily: "Noto Sans KR",
-    fontWeight: 500,
-    fontSize: "10px",
-    lineHeight: "22px",
-    color: "#8D94A0",
-  }));
-
   const 구매하기 = (url: string) => {
     if (url === "") {
       alert("구매 링크가 유효하지 않습니다.");
@@ -163,7 +128,7 @@ export default function SearchBookDetail({ doc }: ISearchBookDetail) {
             css={{ marginLeft: "8px", width: "115px" }}
             color="secondary"
           >
-            상세보기
+            <span>상세보기</span>
             <Image
               css={css`
                 margin-left: 5px;
@@ -186,7 +151,7 @@ export default function SearchBookDetail({ doc }: ISearchBookDetail) {
               onClick={() => 구매하기(doc.url)}
               css={{ marginLeft: "56px", width: "240px" }}
             >
-              구매하기
+              <span>구매하기</span>
             </Button>
           </div>
         </div>
@@ -203,3 +168,39 @@ export default function SearchBookDetail({ doc }: ISearchBookDetail) {
     </div>
   );
 }
+
+const Title = styled.span(({ theme }) => ({
+  ...theme.typography.title3,
+  ...theme.text.primary,
+  wordBreak: "keep-all",
+}));
+
+const Author = styled.span(({ theme }) => ({
+  ...theme.typography.body2,
+  ...theme.text.secondary,
+  marginLeft: "1rem",
+}));
+
+const Contents = styled.p(({ theme }) => ({
+  ...theme.text.primary,
+  fontFamily: "Noto Sans KR",
+  fontWeight: 500,
+  fontSize: "10px",
+  lineHeight: "16px",
+  wordBreak: "keep-all",
+  display: "contents",
+}));
+
+const Price = styled.div(({ theme }) => ({
+  ...theme.typography.title3,
+  ...theme.text.primary,
+  marginLeft: "8px",
+}));
+
+const PriceCaption = styled.span(() => ({
+  fontFamily: "Noto Sans KR",
+  fontWeight: 500,
+  fontSize: "10px",
+  lineHeight: "22px",
+  color: "#8D94A0",
+}));

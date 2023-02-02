@@ -10,6 +10,7 @@ import styled from "@emotion/styled";
 import { toCurrency } from "@/utils/currency";
 // components
 import Button from "@/components/ui/button";
+// store
 import { bookDetailKeyState } from "@/store/book";
 
 interface ISearchBookItem {
@@ -19,23 +20,6 @@ interface ISearchBookItem {
 
 export default function SearchBookItem({ id, doc }: ISearchBookItem) {
   const setBookDetail = useSetRecoilState(bookDetailKeyState);
-
-  const Title = styled.span(({ theme }) => ({
-    ...theme.typography.title3,
-    ...theme.text.primary,
-    marginLeft: "4rem",
-  }));
-
-  const Author = styled.span(({ theme }) => ({
-    ...theme.typography.body2,
-    ...theme.text.secondary,
-    marginLeft: "1rem",
-  }));
-
-  const Price = styled.span(({ theme }) => ({
-    ...theme.typography.title3,
-    ...theme.text.primary,
-  }));
 
   const 구매하기 = (url: string) => {
     if (url === "") {
@@ -92,14 +76,14 @@ export default function SearchBookItem({ id, doc }: ISearchBookItem) {
             onClick={() => 구매하기(doc.url)}
             css={{ marginLeft: "56px" }}
           >
-            구매하기
+            <span>구매하기</span>
           </Button>
           <Button
             onClick={상세보기}
             css={{ marginLeft: "8px" }}
             color="secondary"
           >
-            상세보기
+            <span>상세보기</span>
             <Image
               css={css`
                 margin-left: 5px;
@@ -124,3 +108,28 @@ export default function SearchBookItem({ id, doc }: ISearchBookItem) {
     </div>
   );
 }
+
+const Title = styled.span(({ theme }) => ({
+  ...theme.typography.title3,
+  ...theme.text.primary,
+  marginLeft: "4rem",
+  whiteSpace: "pre",
+  overflow: "auto",
+  textOverflow: "ellipsis",
+  maxWidth: "400px",
+}));
+
+const Author = styled.span(({ theme }) => ({
+  ...theme.typography.body2,
+  ...theme.text.secondary,
+  marginLeft: "1rem",
+  whiteSpace: "pre",
+  overflow: "auto",
+  textOverflow: "ellipsis",
+  maxWidth: "100px",
+}));
+
+const Price = styled.span(({ theme }) => ({
+  ...theme.typography.title3,
+  ...theme.text.primary,
+}));
