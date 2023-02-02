@@ -8,19 +8,8 @@ import styled from "@emotion/styled";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-      `}
-    >
-      <header
-        css={css`
-          display: flex;
-          align-items: center;
-          height: 80px;
-        `}
-      >
+    <Column>
+      <Header>
         <div
           css={css`
             position: absolute;
@@ -44,19 +33,28 @@ export default function Layout({ children }: { children: ReactNode }) {
           <StyledLink href="/">도서 검색</StyledLink>
           <StyledLink href="/wish-list">내가 찜한 책</StyledLink>
         </div>
-      </header>
-      <main
-        css={css`
-          margin-top: 104px;
-          display: flex;
-          justify-content: center;
-        `}
-      >
-        {children}
-      </main>
-    </div>
+      </Header>
+      <Main>{children}</Main>
+    </Column>
   );
 }
+
+const Main = styled.main`
+  margin-top: 104px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+  height: 80px;
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const StyledLink = styled(Link)((props) => ({
   ...props.theme.typography.body1,

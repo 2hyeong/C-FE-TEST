@@ -1,5 +1,4 @@
 // emotion
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 // components
 import SearchBookInput from "./input";
@@ -7,33 +6,33 @@ import SearchBookList from "./list";
 
 export default function SearchBook() {
   return (
-    <section
-      css={css`
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-        max-width: 960px;
-        & > * {
-          margin: 16px 0;
-        }
-      `}
-    >
-      <div
-        css={css`
-          width: 100%;
-          & > * {
-            margin: 16px 0;
-          }
-        `}
-      >
+    <Container>
+      <검색Container>
         <Title2>도서 검색</Title2>
         <SearchBookInput />
-      </div>
+      </검색Container>
       <SearchBookList />
-    </section>
+    </Container>
   );
 }
+
+const Container = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  max-width: 960px;
+  & > * {
+    margin: 16px 0;
+  }
+`;
+
+const 검색Container = styled.div`
+  width: 100%;
+  & > * {
+    margin: 16px 0;
+  }
+`;
 
 const Title2 = styled.h2((props) => ({
   ...props.theme.typography.title2,

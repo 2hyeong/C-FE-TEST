@@ -26,54 +26,49 @@ export default function Pagination({ total, show = 10 }: IPagination) {
 
   const totalPage = Math.ceil(total / limit);
 
-  const handleClick = ({
-    num,
-    prev = false,
-    next = false,
-  }: {
-    num: number;
-    prev?: boolean;
-    next?: boolean;
-  }) => {
-    setBookDetailKey("");
+  const handleClick =
+    ({
+      num,
+      prev = false,
+      next = false,
+    }: {
+      num: number;
+      prev?: boolean;
+      next?: boolean;
+    }) =>
+    () => {
+      setBookDetailKey("");
 
-    if (num === 0) {
-      alert("이전 페이지가 없습니다.");
-      return;
-    }
+      if (num === 0) {
+        alert("이전 페이지가 없습니다.");
+        return;
+      }
 
-    if (num === totalPage) {
-      alert("마지막 페이지입니다.");
-      return;
-    }
+      if (num === totalPage) {
+        alert("마지막 페이지입니다.");
+        return;
+      }
 
-    setPage(num);
+      setPage(num);
 
-    // prev
-    if (num % show === 9 && prev) {
-      setOffset(offset - 10);
-      setLimit(offset + 1);
-      return;
-    }
+      // prev
+      if (num % show === 9 && prev) {
+        setOffset(offset - 10);
+        setLimit(offset + 1);
+        return;
+      }
 
-    // next
-    if (num % show === 0 && next) {
-      setOffset(limit - 1);
-      setLimit(totalPage < limit + show ? totalPage : limit + show);
-      return;
-    }
-  };
+      // next
+      if (num % show === 0 && next) {
+        setOffset(limit - 1);
+        setLimit(totalPage < limit + show ? totalPage : limit + show);
+        return;
+      }
+    };
 
   return total > 0 ? (
-    <div
-      css={css`
-        display: flex;
-        & > * {
-          margin: 0 4px;
-        }
-      `}
-    >
-      <Button onClick={() => handleClick({ num: page - 1, prev: true })}>
+    <Container>
+      <Button onClick={handleClick({ num: page - 1, prev: true })}>
         &lsaquo;
       </Button>
       {totalPage &&
@@ -86,19 +81,26 @@ export default function Pagination({ total, show = 10 }: IPagination) {
                 <Button
                   key={`page-${num}`}
                   className={num === page ? "active" : ""}
-                  onClick={() => handleClick({ num })}
+                  onClick={handleClick({ num })}
                 >
                   {num}
                 </Button>
               );
             }
           })}
-      <Button onClick={() => handleClick({ num: page + 1, next: true })}>
+      <Button onClick={handleClick({ num: page + 1, next: true })}>
         &rsaquo;
       </Button>
-    </div>
+    </Container>
   ) : null;
 }
+
+const Container = styled.div`
+  display: flex;
+  & > * {
+    margin: 0 4px;
+  }
+`;
 
 const Button = styled.button(({ theme }) => ({
   border: "1px solid #DADADA",

@@ -19,7 +19,7 @@ interface ISearchBookDetail {
 export default function SearchBookDetail({ doc }: ISearchBookDetail) {
   const setBookDetail = useSetRecoilState(bookDetailKeyState);
 
-  const 구매하기 = (url: string) => {
+  const 구매하기 = (url: string) => () => {
     if (url === "") {
       alert("구매 링크가 유효하지 않습니다.");
       return;
@@ -148,7 +148,7 @@ export default function SearchBookDetail({ doc }: ISearchBookDetail) {
           >
             <DetailPrice />
             <Button
-              onClick={() => 구매하기(doc.url)}
+              onClick={구매하기(doc.url)}
               css={{ marginLeft: "56px", width: "240px" }}
             >
               <span>구매하기</span>
@@ -163,6 +163,7 @@ export default function SearchBookDetail({ doc }: ISearchBookDetail) {
           color: #d2d6da;
           background: #d2d6da;
           height: 1px;
+          border: thin;
         `}
       />
     </div>

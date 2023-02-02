@@ -1,9 +1,15 @@
 //
 import { useRecoilValue } from "recoil";
 // hooks
-import { useGetBooks } from "@/hooks/quries/useBook";
+import { useQueryBook } from "@/hooks/quries/useBook";
 // store
-import { bookDetailKeyState, pageState, searchInputState } from "@/store/book";
+import {
+  bookDetailKeyState,
+  bookQueryState,
+  pageState,
+  searchInputState,
+  targetState,
+} from "@/store/book";
 // type
 import type { IBook } from "@/types/book";
 // emotion
@@ -17,10 +23,22 @@ import Pagination from "./pagination";
 export default function SearchBookList() {
   const query = useRecoilValue(searchInputState);
   const bookDetailKey = useRecoilValue(bookDetailKeyState);
+  const target = useRecoilValue(targetState);
+  const bookQuery = useRecoilValue(bookQueryState);
   const page = useRecoilValue(pageState);
 
-  const { data, isLoading } = useGetBooks({ query, page });
-  console.log(data);
+  const { data, isLoading, isSuccess } = useQueryBook({
+    id: bookQuery,
+    query,
+    page,
+    target,
+  });
+
+  if (isLoading) return <>loading...</>;
+  if (isSuccess) {
+    console.log(data, "data");
+  }
+
   return (
     <div>
       <div>

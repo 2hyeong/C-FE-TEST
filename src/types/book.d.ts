@@ -6,12 +6,14 @@
  * target - 검색 필드 제한 사용 가능한 값: title(제목), isbn (ISBN), publisher(출판사), person(인명)
  */
 
+export type TTarget = "title" | "isbn" | "publisher" | "person";
+
 export interface IBookParams {
   query: string;
   sort?: string;
   page?: number;
   size?: number;
-  target?: string;
+  target?: string | TTarget;
 }
 
 export interface IBook {

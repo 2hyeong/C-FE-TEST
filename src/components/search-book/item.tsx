@@ -21,7 +21,7 @@ interface ISearchBookItem {
 export default function SearchBookItem({ id, doc }: ISearchBookItem) {
   const setBookDetail = useSetRecoilState(bookDetailKeyState);
 
-  const 구매하기 = (url: string) => {
+  const 구매하기 = (url: string) => () => {
     if (url === "") {
       alert("구매 링크가 유효하지 않습니다.");
       return;
@@ -72,10 +72,7 @@ export default function SearchBookItem({ id, doc }: ISearchBookItem) {
           `}
         >
           <Price>{toCurrency(doc.price)}</Price>
-          <Button
-            onClick={() => 구매하기(doc.url)}
-            css={{ marginLeft: "56px" }}
-          >
+          <Button onClick={구매하기(doc.url)} css={{ marginLeft: "56px" }}>
             <span>구매하기</span>
           </Button>
           <Button
@@ -103,6 +100,7 @@ export default function SearchBookItem({ id, doc }: ISearchBookItem) {
           color: #d2d6da;
           background: #d2d6da;
           height: 1px;
+          border: thin;
         `}
       />
     </div>
