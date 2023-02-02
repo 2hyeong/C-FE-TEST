@@ -11,7 +11,7 @@ export const useGetBooks = ({
   target,
 }: IBookParams) => {
   return useQuery(
-    [query],
+    [query, page],
     () => getBooks({ query, sort, page, size, target }),
     {
       onError: (err: IApiError) => err,

@@ -9,3 +9,8 @@ export const bookDetailKeyState = atom({
   key: "bookDetailKeyState",
   default: "",
 });
+
+export const pageState = atom({
+  key: "pageState",
+  default: 1,
+});
