@@ -10,4 +10,12 @@ $ pnpm run test
 $ pnpm run build
 ```
 
-[배포 링크](https://certicos-books.vercel.app/wish-book)
+### vercel
+
+![배포 링크](https://certicos-books.vercel.app/wish-book)
+
+### 소요시간
+
+Feb 1, Feb2, Feb3 (3days)
+![start](/public/commit1.png)
+![end](/public/commit2.png)
