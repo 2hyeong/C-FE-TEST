@@ -8,6 +8,15 @@
 
 export type TTarget = "title" | "isbn" | "publisher" | "person";
 
+export interface IBookResponse {
+  meta: {
+    total_count: number;
+    pageable_count: number;
+    is_end: boolean;
+  };
+  documents: IBook[];
+}
+
 export interface IBookParams {
   query: string;
   sort?: string;

@@ -1,3 +1,4 @@
+import type { IBook } from "@/types/book";
 import { atom } from "recoil";
 
 export const bookQueryState = atom({
@@ -23,4 +24,9 @@ export const pageState = atom({
 export const targetState = atom({
   key: "targetState",
   default: "",
+});
+
+export const wishState = atom({
+  key: "wishState",
+  default: { doc: <IBook[]>[] },
 });
