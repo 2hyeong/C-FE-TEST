@@ -26,14 +26,6 @@ export default function Dropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useRecoilState(targetState);
 
-  useEffect(() => {
-    setSelectedOption(options[0].target);
-    return () => {
-      setSelectedOption("");
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedOption === ""]);
-
   const toggle = () => setIsOpen(!isOpen);
 
   const hanldeClick = (value: string) => () => {
@@ -44,7 +36,8 @@ export default function Dropdown() {
   return (
     <>
       <DropDownHeader onClick={toggle}>
-        {options.filter((o) => o.target === selectedOption)[0]?.label}
+        {options.filter((o) => o.target === selectedOption)[0]?.label ||
+          options[0].label}
       </DropDownHeader>
       {isOpen && (
         <DropDownList>

@@ -33,6 +33,11 @@ export default function SearchBookInput() {
   };
 
   const handleClick상세검색 = () => {
+    if (showDetailSearch) {
+      setTarget("title");
+    } else {
+      setTarget("title");
+    }
     setShowDetailSearch(!showDetailSearch);
   };
 
