@@ -12,7 +12,7 @@ $ pnpm run build
 
 ### vercel
 
-![배포 링크](https://certicos-books.vercel.app/wish-book)
+[배포 링크](https://certicos-books.vercel.app/wish-book)
 
 ### 소요시간
 
