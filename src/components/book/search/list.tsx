@@ -98,7 +98,7 @@ export default function SearchBookList() {
           justify-content: center;
         `}
       >
-        <Pagination total={data?.data?.meta?.total_count} />
+        <Pagination total={data?.meta?.total_count || 0} />
       </div>
     </div>
   );
