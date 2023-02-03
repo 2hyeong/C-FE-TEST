@@ -18,7 +18,8 @@ import { css } from "@emotion/react";
 import BookDetail from "../detail";
 import Empty from "../empty";
 import BookItem from "../item";
-import Pagination from "../pagination";
+import Pagination from "./pagination";
+import usePagination from "@/hooks/usePagination";
 
 export default function SearchBookList() {
   const query = useRecoilValue(searchInputState);

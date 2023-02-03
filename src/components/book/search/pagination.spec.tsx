@@ -38,31 +38,31 @@ describe("pagination", () => {
     expect(buttons).toHaveLength(4);
   });
 
-  test("If total 100 is given, it should have 11 buttons", () => {
+  test("If total 100 is given, it should have 12 buttons", () => {
     setup(100);
 
     const buttons = screen.getAllByRole("button");
 
-    // prev, 1, 2, 3, 4, 5, 6, 7, 8, 9, next
-    expect(buttons).toHaveLength(11);
+    // prev, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 next
+    expect(buttons).toHaveLength(12);
   });
 
-  test("If total 100 is given, 1 to 9 pages will be shown, ", () => {
+  test("If total 100 is given, 1 to 10 pages will be shown, ", () => {
     setup(100);
 
     expect(screen.getByText("1")).toBeTruthy();
     expect(screen.getByText("2")).toBeTruthy();
-    expect(screen.getByText("9")).toBeTruthy();
-    expect(screen.queryByText("10")).toBeFalsy();
+    expect(screen.getByText("10")).toBeTruthy();
+    expect(screen.queryByText("11")).toBeFalsy();
   });
 
   test(`If total 100 is given
-        and user click page 9 then next
+        and user click page 10 then next
         then alert to be called`, async () => {
     setup(100);
 
-    const nine = screen.getByText("9");
-    await userEvent.click(nine);
+    const ten = screen.getByText("10");
+    await userEvent.click(ten);
 
     const next = screen.getAllByRole("button");
     await userEvent.click(next[next.length - 1]);

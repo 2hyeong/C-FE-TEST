@@ -1,14 +1,8 @@
 //
+import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 // store
-import {
-  bookDetailKeyState,
-  bookQueryState,
-  pageState,
-  searchInputState,
-  targetState,
-  wishState,
-} from "@/store/book";
+import { bookDetailKeyState, wishState } from "@/store/book";
 // type
 import type { IBook } from "@/types/book";
 // emotion
@@ -17,15 +11,22 @@ import { css } from "@emotion/react";
 import BookDetail from "../detail";
 import Empty from "../empty";
 import BookItem from "../item";
-import Pagination from "../pagination";
-import { useEffect, useState } from "react";
+import Pagination from "./pagination";
+import usePagination from "@/hooks/usePagination";
 
 export default function WishBookList() {
   const bookDetailKey = useRecoilValue(bookDetailKeyState);
   const [data, setData] = useRecoilState(wishState);
+  const volume = 10;
+
+  const { page, totalPages, setPage, offset, limit } = usePagination(
+    data.doc,
+    volume
+  );
 
   useEffect(() => {
-    setData(JSON.parse(localStorage.getItem("wish-list") as string));
+    const wishList = JSON.parse(localStorage.getItem("wish-list") as string);
+    setData(wishList);
   }, []);
 
   return (
@@ -46,7 +47,7 @@ export default function WishBookList() {
               marginLeft: "1rem",
             })}
           >
-            {data?.doc?.length || 0}
+            {data.doc.length}
           </span>
           건
         </span>
@@ -58,7 +59,7 @@ export default function WishBookList() {
           width: 960px;
         `}
       >
-        {!data?.doc?.length ? (
+        {!data.doc ? (
           <div
             css={css`
               margin-top: 10rem;
@@ -72,7 +73,7 @@ export default function WishBookList() {
               margin-top: 4rem;
             `}
           >
-            {data?.doc?.map((doc: IBook, key: number) => {
+            {data.doc.slice(offset, limit)?.map((doc: IBook, key: number) => {
               {
                 return bookDetailKey === `doc-${key}` ? (
                   <BookDetail key={`doc-${key}`} doc={doc} />
@@ -90,7 +91,12 @@ export default function WishBookList() {
           justify-content: center;
         `}
       >
-        <Pagination total={data?.doc?.length} />
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          volume={volume}
+          setPage={setPage}
+        />
       </div>
     </div>
   );
