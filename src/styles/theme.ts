@@ -32,7 +32,7 @@ const typography = {
     fontStyle: "normal",
     fontWeight: 700,
     fontSize: "18px",
-    lineHeight: "18px",
+    lineHeight: "24px",
   },
   body1: {
     fontFamily: "Noto Sans KR",
