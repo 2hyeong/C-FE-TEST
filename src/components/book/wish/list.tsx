@@ -23,7 +23,6 @@ import { useEffect, useState } from "react";
 export default function WishBookList() {
   const bookDetailKey = useRecoilValue(bookDetailKeyState);
   const [data, setData] = useRecoilState(wishState);
-  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem("wish-list") as string));
