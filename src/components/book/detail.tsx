@@ -27,7 +27,7 @@ export default function BookDetail({ doc }: ISearchBookDetail) {
   const old = JSON.parse(localStorage.getItem("wish-list") as string);
 
   const wished = useMemo(
-    () => old.doc?.filter((tt: IBook) => tt.isbn === doc.isbn).length || 0,
+    () => old?.doc?.filter((tt: IBook) => tt.isbn === doc.isbn).length || 0,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [toggle]
   );

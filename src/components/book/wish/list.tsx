@@ -20,7 +20,7 @@ export default function WishBookList() {
   const volume = 10;
 
   const { page, totalPages, setPage, offset, limit } = usePagination(
-    data.doc,
+    data?.doc || [],
     volume
   );
 
@@ -47,7 +47,7 @@ export default function WishBookList() {
               marginLeft: "1rem",
             })}
           >
-            {data.doc.length}
+            {data?.doc?.length || 0}
           </span>
           건
         </span>
@@ -59,7 +59,7 @@ export default function WishBookList() {
           width: 960px;
         `}
       >
-        {!data.doc ? (
+        {!data?.doc ? (
           <div
             css={css`
               margin-top: 10rem;
