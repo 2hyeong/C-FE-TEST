@@ -1,11 +1,11 @@
 import type { palette } from "@/types/emotion";
-import { ReactNode } from "react";
+import { ReactNode, SyntheticEvent } from "react";
 
 interface ButtonProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "css"> {
   children: ReactNode;
   color?: palette;
-  onClick: () => void;
+  onClick: (e: SyntheticEvent<Element, Event>) => void;
 }
 
 export default function Button({
