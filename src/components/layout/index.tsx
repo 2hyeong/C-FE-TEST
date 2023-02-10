@@ -20,7 +20,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <Image
             width={207}
             height={32}
-            src="/assets/images/CERTICOS_BOOKS.svg"
+            src="/assets/images/test-image.jpeg"
             alt="로고"
           />
         </div>
