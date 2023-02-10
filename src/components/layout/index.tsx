@@ -18,7 +18,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           `}
         >
           <Image
-            width={207}
+            width={32}
             height={32}
             src="/assets/images/test-image.jpeg"
             alt="로고"
